@@ -1,0 +1,215 @@
+{
+ "actions": [],
+ "autoname": "naming_series:",
+ "creation": "2024-02-26 14:29:46.070714",
+ "default_view": "List",
+ "doctype": "DocType",
+ "document_type": "Document",
+ "engine": "InnoDB",
+ "field_order": [
+  "customer_details",
+  "naming_series",
+  "customer",
+  "column_break0",
+  "transaction_date",
+  "section_break_hfgqr",
+  "equipment_id",
+  "column_break_ruigy",
+  "equipment_name",
+  "column_break_w8njo",
+  "equipment_status",
+  "items_section",
+  "items",
+  "schedule",
+  "generate_schedule",
+  "schedules",
+  "contact_info",
+  "company",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "customer_details",
+   "fieldtype": "Section Break",
+   "oldfieldtype": "Section Break",
+   "options": "fa fa-user"
+  },
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Series",
+   "no_copy": 1,
+   "options": "EMS-",
+   "print_hide": 1,
+   "read_only": 1,
+   "reqd": 1,
+   "set_only_once": 1
+  },
+  {
+   "fieldname": "customer",
+   "fieldtype": "Link",
+   "in_standard_filter": 1,
+   "label": "Customer",
+   "oldfieldname": "customer",
+   "oldfieldtype": "Link",
+   "options": "Company",
+   "print_hide": 1,
+   "reqd": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "column_break0",
+   "fieldtype": "Column Break",
+   "oldfieldtype": "Column Break"
+  },
+  {
+   "fieldname": "transaction_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Transaction Date",
+   "oldfieldname": "transaction_date",
+   "oldfieldtype": "Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "items_section",
+   "fieldtype": "Section Break",
+   "label": "Select Equipment To Maintain",
+   "oldfieldtype": "Section Break",
+   "options": "fa fa-shopping-cart"
+  },
+  {
+   "fieldname": "items",
+   "fieldtype": "Table",
+   "label": "Items",
+   "oldfieldname": "item_maintenance_detail",
+   "oldfieldtype": "Table",
+   "options": "Equipment Schedule Details",
+   "reqd": 1
+  },
+  {
+   "fieldname": "schedule",
+   "fieldtype": "Section Break",
+   "label": "Equipment Schedule",
+   "oldfieldtype": "Section Break",
+   "options": "fa fa-time"
+  },
+  {
+   "fieldname": "generate_schedule",
+   "fieldtype": "Button",
+   "hidden": 1,
+   "label": "Generate Schedule",
+   "oldfieldtype": "Button"
+  },
+  {
+   "fieldname": "schedules",
+   "fieldtype": "Table",
+   "label": "Schedules",
+   "oldfieldname": "schedules",
+   "oldfieldtype": "Table",
+   "options": "Schedule Of Item"
+  },
+  {
+   "fieldname": "contact_info",
+   "fieldtype": "Section Break",
+   "hidden": 1,
+   "label": "Contact Info"
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "hidden": 1,
+   "in_list_view": 1,
+   "label": "Company",
+   "oldfieldname": "company",
+   "oldfieldtype": "Link",
+   "options": "Company",
+   "remember_last_selected_value": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Equipment Maintanance Schedule",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Equipment Maintanance Schedule",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "section_break_hfgqr",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "equipment_id",
+   "fieldtype": "Link",
+   "label": "Equipment ID",
+   "options": "Equipment Master"
+  },
+  {
+   "fieldname": "column_break_ruigy",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "equipment_id.equipment_name",
+   "fieldname": "equipment_name",
+   "fieldtype": "Data",
+   "label": " Equipment Name"
+  },
+  {
+   "fieldname": "column_break_w8njo",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "equipment_status",
+   "fieldtype": "Select",
+   "label": " Equipment Status",
+   "options": "In Use\nContinue Use\nRejected"
+  }
+ ],
+ "icon": "fa fa-calendar",
+ "is_submittable": 1,
+ "links": [
+  {
+   "link_doctype": "Equipment Maintanance Order",
+   "link_fieldname": "equipment_maintanance_schedule"
+  }
+ ],
+ "modified": "2024-02-29 15:38:49.655683",
+ "modified_by": "Administrator",
+ "module": "Quantbit Calibration Process",
+ "name": "Equipment Maintanance Schedule",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "amend": 1,
+   "cancel": 1,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Maintenance Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "timeline_field": "customer"
+}

@@ -1,0 +1,221 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "naming_series:",
+ "creation": "2024-02-26 12:12:04.375567",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "company",
+  "orderer_name",
+  "column_break_u8jkn",
+  "naming_series",
+  "maintanance_date",
+  "column_break_yxh0r",
+  "date",
+  "status",
+  "section_break_gutkx",
+  "equipment_maintanance_schedule",
+  "maintanance_order_type",
+  "column_break_rvs06",
+  "equipment_id",
+  "valid_from",
+  "column_break_qt8bm",
+  "equipment_name",
+  "valid_to",
+  "address_section",
+  "equipment_plant",
+  "column_break_wukyg",
+  "equipment_location",
+  "column_break_8s0pj",
+  "equipment_status",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "label": "Company",
+   "options": "Company",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Series",
+   "options": "EMO-",
+   "read_only": 1
+  },
+  {
+   "default": "Today",
+   "fieldname": "date",
+   "fieldtype": "Date",
+   "label": "Date",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_gutkx",
+   "fieldtype": "Section Break",
+   "label": "Order Details"
+  },
+  {
+   "fieldname": "maintanance_order_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Maintanance Order Type",
+   "options": "Preventive\nBreakdown",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_rvs06",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "equipment_id",
+   "fieldtype": "Link",
+   "label": "Equipment ID",
+   "options": "Equipment Master",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_qt8bm",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "equipment_id.equipment_name",
+   "fieldname": "equipment_name",
+   "fieldtype": "Data",
+   "label": "Equipment Name"
+  },
+  {
+   "fieldname": "address_section",
+   "fieldtype": "Section Break",
+   "label": "Address"
+  },
+  {
+   "fetch_from": "equipment_id.plant",
+   "fieldname": "equipment_plant",
+   "fieldtype": "Data",
+   "label": "Equipment Plant"
+  },
+  {
+   "fetch_from": "equipment_id.location",
+   "fieldname": "equipment_location",
+   "fieldtype": "Data",
+   "label": "Equipment Location"
+  },
+  {
+   "fieldname": "orderer_name",
+   "fieldtype": "Data",
+   "label": "Orderer Name"
+  },
+  {
+   "fieldname": "column_break_u8jkn",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Equipment Maintanance Order",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "column_break_yxh0r",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "maintanance_date",
+   "fieldtype": "Date",
+   "label": "Maintanance Scheduled Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_wukyg",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "equipment_maintanance_schedule",
+   "fieldtype": "Link",
+   "label": "Equipment Maintanance Schedule",
+   "options": "Equipment Maintanance Schedule"
+  },
+  {
+   "fetch_from": "equipment_id.valid_from",
+   "fieldname": "valid_from",
+   "fieldtype": "Date",
+   "label": "Valid From"
+  },
+  {
+   "fetch_from": "equipment_id.valid_to",
+   "fieldname": "valid_to",
+   "fieldtype": "Date",
+   "label": "Valid To"
+  },
+  {
+   "fieldname": "column_break_8s0pj",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "equipment_status",
+   "fieldtype": "Select",
+   "label": "Equipment Status",
+   "options": "In Use\nContinue For Use\nRejected"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Order Status",
+   "options": "Placed\nOpen\nCompleted",
+   "reqd": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2024-03-05 13:04:07.338156",
+ "modified_by": "Administrator",
+ "module": "Quantbit Calibration Process",
+ "name": "Equipment Maintanance Order",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "search_fields": "equipment_name,status,maintanance_date",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [
+  {
+   "color": "Green",
+   "title": "Completed"
+  },
+  {
+   "color": "Gray",
+   "title": "Placed"
+  },
+  {
+   "color": "Red",
+   "title": "Open"
+  }
+ ],
+ "track_changes": 1
+}
