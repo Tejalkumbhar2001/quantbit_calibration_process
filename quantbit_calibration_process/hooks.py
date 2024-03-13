@@ -128,7 +128,13 @@ app_license = "MIT"
 
 # Scheduled Tasks
 # ---------------
-
+scheduler_events = {
+    "cron": {
+        "*/1 * * * *": [
+            "quantbit_calibration_process.quantbit_calibration_process.doctype.equipment_maintanance_schedule.equipment_maintanance_schedule.cm",
+        ],
+    },
+}
 # scheduler_events = {
 #	"all": [
 #		"quantbit_calibration_process.tasks.all"
@@ -215,3 +221,16 @@ app_license = "MIT"
 # auth_hooks = [
 #	"quantbit_calibration_process.auth.validate"
 # ]
+
+
+# hook.py
+
+# Define fixtures
+fixtures = [
+    {
+        "dt": "Workspace",
+        "filters": [
+            ["name", "like", "Quantbit Calibration Process"]
+        ]
+    }
+]

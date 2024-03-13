@@ -23,3 +23,20 @@ frappe.ui.form.on('Equipment Maintanance Order', {
         // }, __('Go To Doctype'));
     }
 });
+
+frappe.ui.form.on('Equipment Maintanance Order', {
+    refresh: function(frm) {
+        frm.add_custom_button(__('Material Request'), function() {
+            frappe.set_route('Form', 'Material Request');
+        }, __('Create'));
+    }
+});
+
+frappe.ui.form.on('Required Item and Details', {
+	source_warehouse: function(frm) {
+		frm.call({
+			method:'available_qty',
+			doc:frm.doc
+		})
+	}
+});

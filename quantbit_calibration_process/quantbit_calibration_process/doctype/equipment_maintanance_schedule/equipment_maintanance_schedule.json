@@ -9,22 +9,28 @@
  "field_order": [
   "customer_details",
   "naming_series",
-  "customer",
+  "company",
   "column_break0",
   "transaction_date",
+  "customer",
   "section_break_hfgqr",
+  "scheduled_type",
+  "days_toschedule",
+  "column_break_iuwr7",
   "equipment_id",
-  "column_break_ruigy",
   "equipment_name",
-  "column_break_w8njo",
+  "column_break_czp0e",
+  "department_name",
+  "requested_by",
+  "column_break_iolle",
   "equipment_status",
+  "plant",
   "items_section",
   "items",
   "schedule",
   "generate_schedule",
   "schedules",
   "contact_info",
-  "company",
   "amended_from"
  ],
  "fields": [
@@ -64,13 +70,13 @@
    "oldfieldtype": "Column Break"
   },
   {
+   "default": "Today",
    "fieldname": "transaction_date",
    "fieldtype": "Date",
    "in_list_view": 1,
-   "label": "Transaction Date",
+   "label": "Date",
    "oldfieldname": "transaction_date",
-   "oldfieldtype": "Date",
-   "reqd": 1
+   "oldfieldtype": "Date"
   },
   {
    "fieldname": "items_section",
@@ -119,13 +125,8 @@
   {
    "fieldname": "company",
    "fieldtype": "Link",
-   "hidden": 1,
-   "in_list_view": 1,
    "label": "Company",
-   "oldfieldname": "company",
-   "oldfieldtype": "Link",
-   "options": "Company",
-   "remember_last_selected_value": 1
+   "options": "Company"
   },
   {
    "fieldname": "amended_from",
@@ -155,38 +156,75 @@
    "fieldname": "equipment_id",
    "fieldtype": "Link",
    "label": "Equipment ID",
-   "options": "Equipment Master"
-  },
-  {
-   "fieldname": "column_break_ruigy",
-   "fieldtype": "Column Break"
+   "options": "Equipment Master",
+   "reqd": 1
   },
   {
    "fetch_from": "equipment_id.equipment_name",
    "fieldname": "equipment_name",
    "fieldtype": "Data",
-   "label": " Equipment Name"
-  },
-  {
-   "fieldname": "column_break_w8njo",
-   "fieldtype": "Column Break"
+   "label": " Equipment Name",
+   "reqd": 1
   },
   {
    "fieldname": "equipment_status",
    "fieldtype": "Select",
    "label": " Equipment Status",
-   "options": "In Use\nContinue Use\nRejected"
+   "options": "In Use\nContinue Use"
+  },
+  {
+   "fieldname": "scheduled_type",
+   "fieldtype": "Select",
+   "label": "Scheduled Type",
+   "options": "\nMaintanance\nCalibration",
+   "reqd": 1
+  },
+  {
+   "fieldname": "department_name",
+   "fieldtype": "Link",
+   "label": "Department Name",
+   "options": "Department",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_iuwr7",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "plant",
+   "fieldtype": "Data",
+   "label": "Plant"
+  },
+  {
+   "fieldname": "requested_by",
+   "fieldtype": "Link",
+   "label": "Requested By",
+   "options": "Employee"
+  },
+  {
+   "fieldname": "column_break_czp0e",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_iolle",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "days_toschedule",
+   "fieldtype": "Int",
+   "label": "Days To Schedule",
+   "reqd": 1
   }
  ],
  "icon": "fa fa-calendar",
  "is_submittable": 1,
  "links": [
   {
-   "link_doctype": "Equipment Maintanance Order",
-   "link_fieldname": "equipment_maintanance_schedule"
+   "link_doctype": "Maintenance Request-Notification",
+   "link_fieldname": "equipment_maintenance_schedule"
   }
  ],
- "modified": "2024-02-29 15:38:49.655683",
+ "modified": "2024-03-11 14:58:48.534974",
  "modified_by": "Administrator",
  "module": "Quantbit Calibration Process",
  "name": "Equipment Maintanance Schedule",

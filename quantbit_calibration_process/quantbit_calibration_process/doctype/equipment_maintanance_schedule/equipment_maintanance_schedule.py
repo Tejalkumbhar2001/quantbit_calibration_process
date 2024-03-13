@@ -3,6 +3,7 @@
 
 import frappe
 from frappe import _, throw
+from datetime import datetime
 from frappe.utils import add_days, cint, cstr, date_diff, formatdate, getdate
 from erpnext.setup.doctype.employee.employee import get_holiday_list_for_employee
 from erpnext.stock.doctype.serial_no.serial_no import get_serial_nos
@@ -71,7 +72,7 @@ class EquipmentMaintananceSchedule(Document):
 			throw(_("Please click on 'Generate Schedule' to get schedule"))
 		self.check_serial_no_added()
 		self.validate_schedule()
-		self.create_maintanance_orders()
+		# self.create_maintanance_orders()
 
 		email_map = {}
 		for d in self.get("items"):
@@ -219,8 +220,8 @@ class EquipmentMaintananceSchedule(Document):
 		if not self.schedules or self.validate_items_table_change() or self.validate_no_of_visits():
 			self.generate_schedule()
 
-	def on_update(self):
-		self.db_set("status", "Draft")
+	# def on_update(self):
+	# 	self.db_set("status", "Draft")
 
 	def update_amc_date(self, serial_nos, amc_expiry_date=None):
 		for serial_no in serial_nos:
@@ -292,23 +293,72 @@ class EquipmentMaintananceSchedule(Document):
 
 
 	@frappe.whitelist()
-	def create_maintanance_orders(self):
-		for i in self.get("schedules"):
-			doc = frappe.new_doc("Equipment Maintanance Order")
-			doc.orderer_name = self.customer
-			doc.company = self.company
-			doc.date =self.transaction_date
-			doc.maintanance_date = i.scheduled_date
-			doc.equipment_id = i.item_code
-			doc.equipment_name = i.item_name
-			doc.equipment_maintanance_schedule = self.name
-			doc.insert()
-			doc.save()
-			doc.submit()
-
-
-	@frappe.whitelist()
 	def append_equi_in_items(self):
 		for item in self.get("items"):
 			item.item_code = self.equipment_id
 			item.item_name = self.equipment_name
+
+
+	
+
+
+				
+	# @frappe.whitelist()
+	# def create_maintanance_orders(self):
+	# 	current_date = datetime.today().date()
+	# 	child_data = frappe.get_all("Schedule Of Item",filters = {"is_requested":0},fields=["name","parent","scheduled_date","is_requested"],)
+	# 	if(child_data):
+	# 		for i in child_data:		
+	# 			doc1 = frappe.get_doc('Equipment Maintanance Schedule', i.parent)
+	# 			if doc1:				
+	# 				scheduled_date = frappe.utils.data.getdate(i.scheduled_date)
+	# 				# frappe.throw(str((scheduled_date - current_date).days))
+	# 				if (scheduled_date - current_date).days <= self.days_toschedule:
+	# 					# frappe.throw("hiiii")
+	# 					doc = frappe.new_doc("Maintenance Request-Notification")
+	# 					doc.request_type = self.scheduled_type
+	# 					doc.company = self.company
+	# 					doc.equipment_id = self.equipment_id
+	# 					doc.department_name = self.department_name
+	# 					doc.schedule_date = i.scheduled_date
+	# 					doc.equipment_status = self.equipment_status
+	# 					doc.requested_by = self.requested_by
+	# 					doc.maintanance_type = "Preventive"
+	# 					doc.plant = self.plant
+	# 					doc.discription = "Preventive Scheduling from Equipment Maintanance Schedule"
+
+	# 					doc.equipment_maintenance_schedule =i.parent
+	# 					doc.insert()
+	# 					frappe.db.set_value('Schedule Of Item', i.name, 'is_requested', 1)
+	# 					# doc.save()
+
+
+			
+@frappe.whitelist()
+def cm():
+	current_date = datetime.today().date()
+	child_data = frappe.get_all("Schedule Of Item",filters = {"is_requested":0},fields=["name","parent","scheduled_date","is_requested"],)
+	if(child_data):
+		for i in child_data:		
+			doc1 = frappe.get_doc('Equipment Maintanance Schedule', i.parent)
+			if doc1:				
+				scheduled_date = frappe.utils.data.getdate(i.scheduled_date)
+				# frappe.throw(str((scheduled_date - current_date).days))
+				if (scheduled_date - current_date).days <= doc1.days_toschedule:
+					# frappe.throw("hiiii")
+					doc = frappe.new_doc("Maintenance Request-Notification")
+					doc.request_type = doc1.scheduled_type
+					doc.company = doc1.company
+					doc.equipment_id = doc1.equipment_id
+					doc.department_name = doc1.department_name
+					doc.schedule_date = i.scheduled_date
+					doc.equipment_status = doc1.equipment_status
+					doc.requested_by = doc1.requested_by
+					doc.maintanance_type = "Preventive"
+					doc.plant = doc1.plant
+					doc.discription = "Preventive Scheduling from Equipment Maintanance Schedule"
+
+					doc.equipment_maintenance_schedule =i.parent
+					doc.insert()
+					frappe.db.set_value('Schedule Of Item', i.name, 'is_requested', 1)
+					# doc.save()

@@ -19,7 +19,8 @@
   "serial_no",
   "item_reference",
   "valid_from",
-  "valid_to"
+  "valid_to",
+  "is_requested"
  ],
  "fields": [
   {
@@ -120,11 +121,18 @@
    "fieldtype": "Date",
    "in_list_view": 1,
    "label": "Valid To"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_requested",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "label": "Is Requested "
   }
  ],
  "istable": 1,
  "links": [],
- "modified": "2024-02-26 18:05:13.394506",
+ "modified": "2024-03-11 15:37:10.570971",
  "modified_by": "Administrator",
  "module": "Quantbit Calibration Process",
  "name": "Schedule Of Item",

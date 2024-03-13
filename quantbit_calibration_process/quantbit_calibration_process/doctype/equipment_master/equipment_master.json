@@ -1,26 +1,33 @@
 {
  "actions": [],
  "allow_rename": 1,
- "autoname": "naming_series:",
+ "autoname": "field:equipment_name",
  "creation": "2024-02-24 17:20:41.141400",
  "default_view": "List",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "naming_series",
-  "column_break_umbfx",
-  "column_break_khsx2",
+  "is_calibration",
+  "column_break_shi05",
   "company",
   "section_break_2zmai",
+  "equipment_brand",
+  "department",
+  "column_break_l8jgc",
   "equipment_name",
-  "column_break_qshtv",
   "valid_from",
-  "column_break_3fczm",
+  "column_break_qshtv",
+  "equipment_category",
   "valid_to",
-  "section_break_qwfho",
+  "column_break_3fczm",
   "plant",
-  "location"
+  "location",
+  "section_break_viilv",
+  "calibration_task_list",
+  "section_break_a7ynh",
+  "maitenance_preventive_scheduling",
+  "discription"
  ],
  "fields": [
   {
@@ -28,15 +35,8 @@
    "fieldtype": "Data",
    "in_list_view": 1,
    "label": "Equipment Name",
-   "reqd": 1
-  },
-  {
-   "fieldname": "column_break_umbfx",
-   "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "column_break_khsx2",
-   "fieldtype": "Column Break"
+   "reqd": 1,
+   "unique": 1
   },
   {
    "fieldname": "company",
@@ -52,20 +52,16 @@
    "fieldtype": "Section Break"
   },
   {
-   "fieldname": "naming_series",
-   "fieldtype": "Select",
-   "label": "Series",
-   "options": "EQ-"
-  },
-  {
    "fieldname": "plant",
    "fieldtype": "Data",
-   "label": "Plant"
+   "label": "Plant Name"
   },
   {
    "fieldname": "location",
-   "fieldtype": "Data",
-   "label": "Location"
+   "fieldtype": "Link",
+   "label": "Location",
+   "options": "Location",
+   "reqd": 1
   },
   {
    "fieldname": "valid_from",
@@ -88,17 +84,72 @@
    "fieldtype": "Column Break"
   },
   {
-   "fieldname": "section_break_qwfho",
+   "fieldname": "equipment_category",
+   "fieldtype": "Link",
+   "label": "Equipment Category",
+   "options": "Equipment Category",
+   "reqd": 1
+  },
+  {
+   "fieldname": "equipment_brand",
+   "fieldtype": "Data",
+   "label": "Equipment Brand"
+  },
+  {
+   "fieldname": "column_break_l8jgc",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "department",
+   "fieldtype": "Link",
+   "label": "Department",
+   "options": "Department"
+  },
+  {
+   "fieldname": "section_break_a7ynh",
    "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "discription",
+   "fieldtype": "Text Editor",
+   "label": "Discription"
+  },
+  {
+   "fieldname": "section_break_viilv",
+   "fieldtype": "Section Break",
+   "label": "Create Task List For Equipment"
+  },
+  {
+   "fieldname": "calibration_task_list",
+   "fieldtype": "Table",
+   "label": "Task List",
+   "options": "Calibration Task List"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_calibration",
+   "fieldtype": "Check",
+   "label": "Is Calibration"
+  },
+  {
+   "fieldname": "column_break_shi05",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "maitenance_preventive_scheduling",
+   "fieldtype": "Table",
+   "hidden": 1,
+   "label": "Maitenance Preventive Scheduling",
+   "options": "Notification Maintenance Prevention"
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2024-02-29 10:25:04.113427",
+ "modified": "2024-03-12 14:06:49.979134",
  "modified_by": "Administrator",
  "module": "Quantbit Calibration Process",
  "name": "Equipment Master",
- "naming_rule": "By \"Naming Series\" field",
+ "naming_rule": "By fieldname",
  "owner": "Administrator",
  "permissions": [
   {
@@ -117,5 +168,6 @@
  "search_fields": "equipment_name",
  "sort_field": "modified",
  "sort_order": "DESC",
- "states": []
+ "states": [],
+ "track_changes": 1
 }
